@@ -1,26 +1,23 @@
-import { useAnswersActions } from "@yext/answers-headless-react";
 import { UniversalResults } from "@yext/answers-react-components";
-import { useEffect } from "react";
+import { usePageSetupEffect } from "../hooks/usePageSetupEffect";
 
 const universalResultsConfig = {
   events: {
     label: "Events",
+    viewAllButton: true,
   },
   locations: {
     label: "Locations",
+    viewAllButton: true,
   },
   artists: {
     label: "Artists",
+    viewAllButton: true,
   },
 };
 
 export const UniversalResultsPage = () => {
-  const answersActions = useAnswersActions();
-
-  useEffect(() => {
-    answersActions.setUniversal();
-    answersActions.executeUniversalQuery();
-  }, []);
+  usePageSetupEffect();
 
   return <UniversalResults verticalConfigMap={universalResultsConfig} />;
 };

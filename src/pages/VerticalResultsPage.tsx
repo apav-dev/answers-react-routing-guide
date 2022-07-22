@@ -1,9 +1,5 @@
-import {
-  useAnswersActions,
-  useAnswersState,
-} from "@yext/answers-headless-react";
-import { StandardSection } from "@yext/answers-react-components";
-import { useEffect } from "react";
+import { StandardCard, VerticalResults } from "@yext/answers-react-components";
+import { usePageSetupEffect } from "../hooks/usePageSetupEffect";
 
 interface VerticalResultsPageProps {
   verticalKey: string;
@@ -12,19 +8,7 @@ interface VerticalResultsPageProps {
 export const VerticalResultsPage = ({
   verticalKey,
 }: VerticalResultsPageProps) => {
-  const answersActions = useAnswersActions();
+  usePageSetupEffect(verticalKey);
 
-  const verticalResults = useAnswersState((state) => state.vertical.results);
-
-  useEffect(() => {
-    answersActions.setVertical(verticalKey);
-    answersActions.executeVerticalQuery();
-  }, [verticalKey]);
-
-  return (
-    <StandardSection
-      verticalKey={verticalKey}
-      results={verticalResults ?? []}
-    />
-  );
+  return <VerticalResults CardComponent={StandardCard} />;
 };

@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
 import { routeConfig } from "../PageRouter";
 import classNames from "classnames";
 import { useAnswersState } from "@yext/answers-headless-react";
+import { LinkWithQuery } from "./LinkWithQuery";
 
 export const NavBar = () => {
   const currentVertical = useAnswersState(
@@ -14,7 +14,7 @@ export const NavBar = () => {
 
   const renderLink = (label: string, path: string) => {
     return (
-      <Link key={`${path}_link`} to={path}>
+      <LinkWithQuery key={`${path}_link`} to={path}>
         <div
           className={classNames(
             "whitespace-nowrap py-3 mt-1 font-medium text-md border-b-2 hover:border-gray-300 border-transparent",
@@ -25,7 +25,7 @@ export const NavBar = () => {
         >
           <div className="py-3 px-2">{label}</div>
         </div>
-      </Link>
+      </LinkWithQuery>
     );
   };
 
